@@ -1,0 +1,141 @@
+body{
+    margin: 0;
+}
+.header {
+    background: black;
+    color: rgb(189, 187, 187);
+    width: 100%;
+    text-align: right;
+    padding-top: 30px;
+}
+
+.iReporter {
+    background: rgb(117, 117, 117);
+    text-align: right;
+    padding-right: 100px;
+    padding-top: 30px;
+    padding-bottom: 5px;
+}
+
+.paragraph {
+    background: rgb(228, 228, 228);
+    width: 50%;
+    height: 600px;
+    float: left;
+    font-size: 30px;
+    margin-top: 0px;
+    text-align: center;
+    padding-top: 30px;   
+
+}
+
+.logIn_Input {
+    background: rgb(228, 228, 228);
+    width: 50%;
+    float: right;
+    text-align: right;
+    height: 600px;
+    padding-top: 30px;
+}
+
+.footer {
+    background: black;
+    color: rgb(189, 187, 187);
+    font-size: 18px;
+    text-align: center;
+    margin-top: 100px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+.signUp {
+    text-align: right;
+    padding-right: 55px;
+}
+
+#logInText {
+    padding-right: 50px;
+}
+#emailAddress {
+    height: 40px;
+    margin-bottom: 10px;
+    margin-right: 75px
+}
+
+#password {
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 75px
+}
+
+#logInButton {
+    width: 173px;
+    height: 42px;
+    margin-top: 20px;
+    background: rgb(0, 0, 34);
+    color: darkturquoise;
+    text-align: center; 
+    margin-right: 75px  
+}
+#iRep {
+    padding-right: 1400px;
+    font-size: 30px;
+    font-weight: 400;
+}
+#help {
+    margin-right: 20px;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+@media(max-width:768px){
+    .header{
+        display: none;
+    }
+    #logInText {display: none;}
+    .paragraph{display: none;}
+    .iReporter{ background: rgb(117, 117, 117);
+        text-align: center;
+        float: center;
+        margin: auto;
+        padding-top: 30px;
+        padding-bottom: 5px;
+        overflow: hidden;
+        padding-right: 15px;
+    }
+    .logIn_Input{
+        width: 100%;
+        float: center;
+        text-align: center;
+        height: 600px;
+        padding-top: 30px;
+    }
+    .signUp {
+        text-align: center;
+        padding-left: 50px;
+    }
+    #emailAddress {
+        height: 40px;
+        margin-bottom: 10px;
+        margin-left: 70px;
+    }
+    
+    #password {
+        height: 40px;
+        margin-top: 10px;
+        margin-left: 70px;
+    }
+    
+    #logInButton {
+        width: 173px;
+        height: 42px;
+        margin-top: 20px;
+        background: rgb(0, 0, 34);
+        color: darkturquoise;
+        text-align: center;  
+        margin-left: 70px;
+    }
+    
+
+}
