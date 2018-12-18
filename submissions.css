@@ -1,0 +1,115 @@
+body{
+    margin: 0;
+}
+.header {
+    background: black;
+    color: rgb(189, 187, 187);
+    width: 100%;
+    text-align: right;
+    padding-top: 30px;
+}
+
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+.topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+  
+  /* Change the color of links on hover */
+.topnav a:hover {
+    background-color: rgb(150, 83, 59);
+    color: black;
+}
+  
+  /* Add a color to the active/current link */
+.topnav a.active {
+    background-color: red;
+    color: white;
+}
+.footer {
+    background: black;
+    color: rgb(189, 187, 187);
+    font-size: 18px;
+    text-align: center;
+    margin-top: 100px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 100%;
+    padding: 10px;
+}
+  
+  /* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+#iRep {
+    padding-right: 1400px;
+    font-size: 30px;
+    font-weight: 400;
+}
+#help {
+    margin-right: 20px;
+    font-size: 30px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+.btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+.middleButton {
+    text-align: center;
+}
+/* On mouse-over */
+.btn:hover {background: #eee;}
+
+.success {color: green;}
+.info {color: dodgerblue;}
+.danger {color: red;}
+@media(max-width:768px){
+    #help {display: none;}
+    .iReporter { background: rgb(117, 117, 117);
+        text-align: center;
+        float: center;
+        padding-top: 30px;
+        padding-bottom: 5px;
+        overflow: hidden;
+        padding-left: 15px;
+        width:100%;
+    }
+    
+    .sidebar{display: none;}
+    .contentside{float: center;}
+    .header {
+        width: 100%;
+        text-align: center;
+        float: center;
+        padding-top: 30px;
+    }
+    #iRep {
+        padding-right: 0px;
+        font-size: 30px;
+        font-weight: 400;
+    }
+}
