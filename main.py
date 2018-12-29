@@ -9,6 +9,8 @@ incidents=[]
 
 app = Flask(__name__)
 
+
+
 #Post
 @app.route('/api/v1/red-flags', methods=['POST'])
 def save_redflag():
@@ -38,7 +40,13 @@ def save_redflag():
         }
     return jsonify(response), 201
 
-     
+
+
+    
+
+
+    
+        
 
 
 if __name__=='__main__':

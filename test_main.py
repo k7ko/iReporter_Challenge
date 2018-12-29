@@ -6,7 +6,7 @@ import json
 
 class TestRedflag(unittest.TestCase):
     def setUp(self):
-        self.test_client = app.test_client()     
+        self.test_client = app.test_client()
 
     def test_save_redflag(self):
         redflag1 = {
