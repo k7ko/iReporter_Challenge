@@ -1,5 +1,5 @@
 import unittest
-from main import app, save_redflag
+from main import app, save_redflag, all_redflags
 from models import Incident
 import json
 
@@ -7,6 +7,25 @@ import json
 class TestRedflag(unittest.TestCase):
     def setUp(self):
         self.test_client = app.test_client()
+
+    def test_all_redflag(self):
+        redflag = {
+            "Images": "Images",
+            "Videos": "Videos",
+            "comment": "Lorem Ipsum is simply dummy text of the century.",
+            "createdBy": "Patrick Kikomeko",
+            "createdOn": "21/12/18",
+            "id": 2,
+            "location": "Kampala",
+            "status": "draft",
+            "type": "RedFlag"
+        }
+        self.test_client.post('api/v1/red-flags', json = redflag)
+
+        response = self.test_client.get('api/v1/red-flags')
+        data = json.loads(response.data)
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(len(data['data']), 1)
 
     def test_save_redflag(self):
         redflag1 = {
