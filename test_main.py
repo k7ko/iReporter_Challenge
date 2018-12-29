@@ -1,6 +1,6 @@
 import unittest
 from main import app, save_redflag, all_redflags
-from main import spec_redflag
+from main import spec_redflag, del_redflag
 from models import Incident
 import json
 
@@ -99,5 +99,25 @@ class TestRedflag(unittest.TestCase):
         self.test_client.post('api/v1/red-flags', json = redflag)
         response = self.test_client.get('api/v1/red-flags/0')
         data = json.loads(response.data)
+        print (data)
+        self.assertEqual(response.status_code, 200)
+
+
+    def test_del_redflag(self):
+        redflag = {
+            "Images": "Images",
+            "Videos": "Videos",
+            "comment": "Lorem Ipsum is simply dummy text of the century.",
+            "createdBy": "Patrick Kikomeko",
+            "createdOn": "21/12/18",
+            "id": 0,
+            "location": "Kampala",
+            "status": "draft",
+            "type": "RedFlag"
+        }
+        self.test_client.post('api/v1/red-flags', json = redflag)
+        response = self.test_client.delete("/api/v1/red-flags/0")
+        data = json.loads(response.data)
+        print(data)
         self.assertEqual(response.status_code, 200)
 

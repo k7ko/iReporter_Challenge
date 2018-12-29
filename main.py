@@ -67,6 +67,28 @@ def spec_redflag(red_flag_id):
         'data': oneFlagConv
     }
     return jsonify(response)
+
+#Delete 
+@app.route('/api/v1/red-flags/<red_flag_id>', methods=['DELETE'])
+def del_redflag(red_flag_id):
+    
+    if red_flag_id == '' or red_flag_id==None:
+        response ={
+            'message':'No data sent',
+                    }
+        return jsonify(response), 400
+    if len(incidents) == 0:
+        response={
+            'message':'List is empty'
+        }
+        return jsonify(response), 500
+    flag_id = int(red_flag_id)
+    incidents.pop(int(flag_id))
+    response = {
+            'message':'Flag has successfully been deleted',
+            'status' : 200
+            }
+    return jsonify(response), 200
     
         
 
