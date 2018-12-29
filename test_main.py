@@ -1,6 +1,6 @@
 import unittest
 from main import app, save_redflag, all_redflags
-from main import spec_redflag, del_redflag
+from main import spec_redflag, del_redflag, edit_redflag
 from models import Incident
 import json
 
@@ -120,4 +120,34 @@ class TestRedflag(unittest.TestCase):
         data = json.loads(response.data)
         print(data)
         self.assertEqual(response.status_code, 200)
+
+    def test_edit_redflag(self):
+        redflag = {
+            "Images": "Images",
+            "Videos": "Videos",
+            "comment": "Lorem Ipsum is simply dummy text of the century.",
+            "createdBy": "Patrick Kikomeko",
+            "createdOn": "21/12/18",
+            "id": 0,
+            "location": "Kampala",
+            "status": "draft",
+            "type": "RedFlag"
+        }
+        self.test_client.post('api/v1/red-flags', json = redflag)
+        redflag1 = {
+            "Images": "Images1",
+            "Videos": "Videos1",
+            "comment": "LALALALALALALALALALALAL.",
+            "createdBy": "Patrick Kikomeko",
+            "createdOn": "21/12/18",
+            "id": 0,
+            "location": "Kyambogo",
+            "status": "draft",
+            "type": "RedFlag"
+        }
+        response = self.test_client.patch("/api/v1/red-flags/0", json = redflag1)
+        data = json.loads(response.data)
+        print(data)
+        self.assertEqual(response.status_code, 201)
+
 
