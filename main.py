@@ -53,11 +53,20 @@ def save_redflag():
         }
     return jsonify(response), 201
 
+#specific Get
+@app.route('/api/v1/red-flags/<red_flag_id>', methods=['GET'])
+def spec_redflag(red_flag_id):
+    flag_id = red_flag_id
+    flag = int(flag_id)
 
-
-    
-
-
+    oneFlag = incidents[flag]
+    oneFlagConv = oneFlag.to_json()
+    response ={
+        'status' : 200,
+        'message':'Successful',
+        'data': oneFlagConv
+    }
+    return jsonify(response)
     
         
 
