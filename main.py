@@ -89,6 +89,38 @@ def del_redflag(red_flag_id):
             'status' : 200
             }
     return jsonify(response), 200
+
+#Edit 
+@app.route('/api/v1/red-flags/<red_flag_id>', methods=['PATCH'])
+def edit_redflag (red_flag_id):
+    flag_id = red_flag_id
+    if flag_id=='' or flag_id == None:
+        response ={
+            'message':'No flag id chosen',
+                    }
+        return jsonify(response), 400
+    
+    flagToEdit = incidents[int(flag_id)]
+    infoToAdd = request.get_json()
+    if not infoToAdd:
+        response = {
+            'message':'No data sent'
+        }
+        return jsonify(response), 400
+    
+    requestvalues = ['id', 'createdOn', 'createdBy', 'type', 'location', 'status', 'Images', 'Videos', 'comment']
+
+    flagToEditDict = flagToEdit.to_json()
+    for field in requestvalues:
+        flagToEditDict[field] = infoToAdd[field]
+
+    edit = Incident(flagToEditDict['id'], flagToEditDict['createdOn'], flagToEditDict['createdBy'], flagToEditDict['type'], flagToEditDict['location'], flagToEditDict['status'], flagToEditDict['Images'], flagToEditDict['Videos'], flagToEditDict['comment'])
+    incidents[int(flag_id)]= edit
+    response= {
+        'message' : 'successfully edited',
+        'status' : '201'
+    }
+    return jsonify(response), 201
     
         
 
