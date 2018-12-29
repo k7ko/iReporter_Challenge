@@ -9,6 +9,19 @@ incidents=[]
 
 app = Flask(__name__)
 
+#Get
+@app.route('/api/v1/red-flags', methods=['GET'])
+def all_redflags():
+#convert each flag in incidents list to json
+
+    allflags = [flag.to_json() for flag in incidents]
+    response ={
+        'status':200,
+        'data': allflags
+    }
+    if len(allflags) < 1:
+        return jsonify({'message': 'No incidents yet'}), 400
+    return jsonify(response)
 
 
 #Post
