@@ -39,7 +39,7 @@ python main.py
 ```
 
 ## Authors
-Patrick Kikomeko Kakembo
+Patrick Kikomeko Kakembo - pkikomeko1@gmail.com
 
 ## License
 No license is needed
