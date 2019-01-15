@@ -23,12 +23,18 @@
     <div class="wrapper">
         <div class="container">
                 <div class="sidebar">
-                    <p class="paragraph">
-                        Corruption is a huge bane to Africa’s development. African countries must develop novel and
-                        localised solutions that will curb this menace, hence the birth of iReporter. iReporter enables
-                        any/every citizen to bring any form of corruption to the notice of appropriate authorities and the
-                        general public. Users can also report on things that needs government intervention
-                    </p>
+                    <div class="formcontent">
+                        <form action="administration.html" method="GET">
+                            <input id="emailAddress" type="email" name="email" placeholder="Email Address">
+                            <br>
+                            <input id="password" type="text" name="password" placeholder="Password">
+                            <br>
+                            <input href="submissions.html" id="button" type="submit" value="User Log In">
+                            <br>
+                            <p class="signUp"> Don't have an Account yet? <a href="index.html"> Sign Up </a></p>
+                        </form>
+                            
+                    </div>
                         
                 </p>
                 </div>
@@ -39,7 +45,7 @@
                             <br>
                             <input id="password" type="text" name="password" placeholder="Password">
                             <br>
-                            <input href="submissions.html" id="button" type="submit" value="Log In">
+                            <input href="submissions.html" id="button" type="submit" value="Admin Log In">
                             <br>
                             <p class="signUp"> Don't have an Account yet? <a href="index.html"> Sign Up </a></p>
                         </form>

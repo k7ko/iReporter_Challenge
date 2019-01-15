@@ -12,12 +12,11 @@ body{
 
 .iReporter {
     background: rgb(117, 117, 117);
-    text-align: right;
+    text-align: center;
     margin: auto;
     padding-top: 30px;
     padding-bottom: 5px;
     overflow: hidden;
-    padding-right: 250px;
 }
 
 .wrapper {
@@ -94,9 +93,7 @@ body{
     margin-top: 60px;
     margin-left: 25px;
 }
-#logInText {
-    padding-right: 50px;
-}
+
 
 #emailAddress {
     height: 40px;  
