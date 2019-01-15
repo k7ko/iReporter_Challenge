@@ -25,17 +25,17 @@ Follow the following instructions to run the API;
 * Clone this [repository](https://github.com/k7ko/iReporter_Challenge.git "iReporter Repository") onto your computer
 * Navigate to the root directory, create a virtual environment and activate it
 ```bash
-cd iReporter_Challenge
-virtualenv venv
-. venv/Scripts/activate
+$ cd iReporter_Challenge
+$ virtualenv venv
+$ . venv/Scripts/activate
 ```
 * Install the required dependencies;
 ```bash
-pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 * Run application
 ```bash
-python main.py
+$ python main.py
 ```
 
 ## Authors
