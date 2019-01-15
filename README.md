@@ -15,10 +15,10 @@ This iReporter API end points that can be used to do the following;
 5) DELETE /api/v1/red-flags - Delete a red-flag record
 
 ## Requirements
-* 'Python3 
-* 'Flask'
-* 'Virtualenv' 
-* 'Git'
+* `Python3`
+* `Flask`
+* `Virtualenv` 
+* `Git`
 ## Installation
 Follow the following instructions to run the API;
 * Install the above requirements
@@ -28,7 +28,7 @@ Follow the following instructions to run the API;
 cd iReporter_Challenge
 virtualenv venv
 . venv/Scripts/activate
-'''bash
+'''
 * Install the required dependencies;
 '''
 pip install -r requirements.txt
