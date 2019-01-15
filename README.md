@@ -27,7 +27,7 @@ Follow the following instructions to run the API;
 ```bash
 $ cd iReporter_Challenge
 $ virtualenv venv
-$ . venv/Scripts/activate
+$ venv/Scripts/activate
 ```
 * Install the required dependencies;
 ```bash
