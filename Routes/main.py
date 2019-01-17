@@ -1,18 +1,18 @@
 from flask import Flask, jsonify, request
 
-from models import User
-from models import Incident
+
+from Models.models import Incident
 import random
 import datetime
 
 incidents=[]
 
+
 app = Flask(__name__)
 
-#Get
 @app.route('/api/v1/red-flags', methods=['GET'])
 def all_redflags():
-#convert each flag in incidents list to json
+    '''Convert each flag in incidents list to json'''
 
     allflags = [flag.to_json() for flag in incidents]
     response ={
@@ -24,10 +24,10 @@ def all_redflags():
     return jsonify(response)
 
 
-#Post
 @app.route('/api/v1/red-flags', methods=['POST'])
 def save_redflag():
-#convert input data to json
+    '''Convert input data to json'''
+
     data = request.get_json()
     print(data)
     if not data:
@@ -53,9 +53,11 @@ def save_redflag():
         }
     return jsonify(response), 201
 
-#specific Get
+
 @app.route('/api/v1/red-flags/<red_flag_id>', methods=['GET'])
 def spec_redflag(red_flag_id):
+    '''Specific Get'''
+
     flag_id = red_flag_id
     flag = int(flag_id)
 
@@ -68,10 +70,11 @@ def spec_redflag(red_flag_id):
     }
     return jsonify(response)
 
-#Delete 
+
 @app.route('/api/v1/red-flags/<red_flag_id>', methods=['DELETE'])
 def del_redflag(red_flag_id):
-    
+    '''Delete''' 
+
     if red_flag_id == '' or red_flag_id==None:
         response ={
             'message':'No data sent',
@@ -90,9 +93,11 @@ def del_redflag(red_flag_id):
             }
     return jsonify(response), 200
 
-#Edit 
+ 
 @app.route('/api/v1/red-flags/<red_flag_id>', methods=['PATCH'])
 def edit_redflag (red_flag_id):
+    '''Edit Red-Flag'''
+
     flag_id = red_flag_id
     if flag_id=='' or flag_id == None:
         response ={
@@ -125,5 +130,4 @@ def edit_redflag (red_flag_id):
         
 
 
-if __name__=='__main__':
-    app.run(host="0.0.0.0", port="5000", debug=True)
+

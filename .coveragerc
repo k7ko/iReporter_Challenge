@@ -6,7 +6,8 @@ omit =
     */.pytest_cache/*
     */env/*
     */__init__.py/*
-    tests/*
+    Tests/*
     */models.py
     */venv/*
-    */models.py
+    Models*/
+    Routes/__init__.py
