@@ -38,13 +38,13 @@ $ pip install -r requirements.txt
 $ python run.py
 ```
 To run tests
-'''bash
+```bash
 $ pytest
-'''
+```
 To run tests with coverage
-'''bash
+```bash
 $ pytest --cov
-'''
+```
 ## Authors
 Patrick Kikomeko Kakembo - pkikomeko1@gmail.com
 
