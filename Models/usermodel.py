@@ -1,19 +1,25 @@
+'''User'''
+
 class User():
-    def __init__(self, id, firstname, lastname, othernames, email, phoneNumber, username, registered, isAdmin):
+    '''
+    Class defining user
+    '''
+    def __init__(self, id, name, email, username, password, isAdmin):
+        '''Initialising attributes of class'''
         self.id = id
-        self.firstname = firstname
-        self.lastname = lastname
-        self.othernames = othernames
+        self.name = name
         self.email = email
-        self.phoneNumber = phoneNumber
         self.username = username
-        self.registered = registered
+        self.password = password
         self.isAdmin = isAdmin
 
     def to_json(self):
-        return {id : self.id, 'firstname' : self.firstname, 'lastname' : self.lastname,
-        'othernames' : self.othernames, 'email' : self.email, 'phoneNumber' : self.phoneNumber,
-        'username' : self.username, 'registered': self.registered, 'isAdmin': self.isAdmin}
-
-
-    
+        '''Converting to json'''
+        return {
+            'id' : self.id,
+            'name' : self.name,
+            'email' : self.email,
+            'username' : self.username,
+            'password': self.password,
+            'isAdmin': self.isAdmin
+        }    

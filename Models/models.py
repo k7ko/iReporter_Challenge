@@ -1,20 +1,32 @@
+'''Incidents'''
 from datetime import datetime
 
 class Incident():
-    def __init__(self, id, createdOn, createdBy, type, location, status, Images, Videos, comment):
+    '''
+    Class describing Incident
+    '''
+    def __init__(self, id, created_on, created_by, type, location, status, images, videos, comment):
+        '''Initialing attributes of class'''
         self.id = id
-        self.createdOn = datetime.today()
-        self.createdBy = createdBy
+        self.created_on = datetime.today()
+        self.created_by = created_by
         self.type = type
         self.location = location
         self.status = status
-        self.Images = Images
-        self.Videos = Videos
+        self.images = images
+        self.videos = videos
         self.comment = comment
 
     def to_json(self):
-        return {"id" : self.id, "createdOn" : self.createdOn, "createdBy" : self.createdBy, "type" : self.type, 
-        "location" : self.location, "status" : self.status, "Images" : self.Images, "Videos" : self.Videos, 
-        "comment": self.comment
+        '''converting to json'''
+        return {
+            "id" : self.id,
+            "created_on" : self.created_on,
+            "created_by" : self.created_by,
+            "type" : self.type,
+            "location" : self.location,
+            "status" : self.status,
+            "images" : self.images,
+            "videos" : self.videos,
+            "comment": self.comment
         }
-

@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 @app.route('/api/v1/red-flags', methods=['GET'])
 def all_redflags():
+    '''Getting all Red-Flags'''
     '''Convert each flag in incidents list to json'''
-
     allflags = [flag.to_json() for flag in incidents]
     response ={
         'status':200,
@@ -29,14 +29,13 @@ def save_redflag():
     '''Convert input data to json'''
 
     data = request.get_json()
-    print(data)
     if not data:
         response ={
             'status': 400,
                     }
         return jsonify(response), 400
 
-    postedData = ['id', 'createdOn', 'createdBy', 'type', 'location', 'status', 'Images', 'Videos', 'comment']
+    postedData = ['id', 'created_on', 'created_by', 'type', 'location', 'status', 'images', 'videos', 'comment']
     if not all(item in data for item in postedData):
         response = {
             'message': 'Missing parameter(s)',
@@ -44,7 +43,7 @@ def save_redflag():
         }
         return jsonify(response), 400
 
-    incident = Incident(data['id'], data['createdOn'], data['createdBy'], data['type'], data['location'], data['status'], data['Images'], data['Videos'], data['comment'])
+    incident = Incident(data['id'], data['created_on'], data['created_by'], data['type'], data['location'], data['status'], data['images'], data['videos'], data['comment'])
     incidents.append(incident)
     response = {
             'status' : 201,
@@ -113,13 +112,13 @@ def edit_redflag (red_flag_id):
         }
         return jsonify(response), 400
     
-    requestvalues = ['id', 'createdOn', 'createdBy', 'type', 'location', 'status', 'Images', 'Videos', 'comment']
+    requestvalues = ['id', 'created_on', 'created_by', 'type', 'location', 'status', 'images', 'videos', 'comment']
 
     flagToEditDict = flagToEdit.to_json()
     for field in requestvalues:
         flagToEditDict[field] = infoToAdd[field]
 
-    edit = Incident(flagToEditDict['id'], flagToEditDict['createdOn'], flagToEditDict['createdBy'], flagToEditDict['type'], flagToEditDict['location'], flagToEditDict['status'], flagToEditDict['Images'], flagToEditDict['Videos'], flagToEditDict['comment'])
+    edit = Incident(flagToEditDict['id'], flagToEditDict['created_on'], flagToEditDict['created_by'], flagToEditDict['type'], flagToEditDict['location'], flagToEditDict['status'], flagToEditDict['images'], flagToEditDict['videos'], flagToEditDict['comment'])
     incidents[int(flag_id)]= edit
     response= {
         'message' : 'successfully edited',
