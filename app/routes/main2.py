@@ -1,12 +1,12 @@
-from flask import Flask, jsonify, request
-from Models.usermodel import User
+from flask import Flask, jsonify, request, Blueprint
+from app.modelsmain.usermodel import User
 import datetime
 
 register=[]
 
-app = Flask(__name__)
+bp2 = Blueprint('users', __name__, url_prefix='/api/v1')
 
-@app.route('/api/v1/registration', methods=['POST'])
+@bp2.route('/registration', methods=['POST'])
 def user_registration():
     '''Registration of User using Post'''
     '''Convert Input Data to json'''

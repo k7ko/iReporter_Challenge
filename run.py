@@ -1,5 +1,8 @@
-from Routes.main import app
-#from Routes.main2 import app
+from app import initialise_app
+
+app = initialise_app()
+
 
 if __name__=='__main__':
-    app.run(host="0.0.0.0", port="5000", debug=True)
+    app.config["DEBUG"] = True
+    app.run()

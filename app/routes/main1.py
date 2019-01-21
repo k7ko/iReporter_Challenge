@@ -1,30 +1,31 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Blueprint
 
 
-from Models.models import Incident
+from app.modelsmain.models import Incident
 import random
 import datetime
 
 incidents=[]
 
+bp = Blueprint("red-flags", __name__, url_prefix='/api/v1')
 
-app = Flask(__name__)
-
-@app.route('/api/v1/red-flags', methods=['GET'])
+@bp.route('/red-flags', methods=['GET'])
 def all_redflags():
     '''Getting all Red-Flags'''
     '''Convert each flag in incidents list to json'''
     allflags = [flag.to_json() for flag in incidents]
+    print (allflags)
+    if len(allflags) < 1:
+        return jsonify({'message': 'No incidents yet'})
     response ={
         'status':200,
         'data': allflags
     }
-    if len(allflags) < 1:
-        return jsonify({'message': 'No incidents yet'}), 400
+    
     return jsonify(response)
 
 
-@app.route('/api/v1/red-flags', methods=['POST'])
+@bp.route('/red-flags', methods=['POST'])
 def save_redflag():
     '''Convert input data to json'''
 
@@ -53,7 +54,7 @@ def save_redflag():
     return jsonify(response), 201
 
 
-@app.route('/api/v1/red-flags/<red_flag_id>', methods=['GET'])
+@bp.route('/red-flags/<red_flag_id>', methods=['GET'])
 def spec_redflag(red_flag_id):
     '''Specific Get'''
 
@@ -70,7 +71,7 @@ def spec_redflag(red_flag_id):
     return jsonify(response)
 
 
-@app.route('/api/v1/red-flags/<red_flag_id>', methods=['DELETE'])
+@bp.route('/red-flags/<red_flag_id>', methods=['DELETE'])
 def del_redflag(red_flag_id):
     '''Delete''' 
 
@@ -93,7 +94,7 @@ def del_redflag(red_flag_id):
     return jsonify(response), 200
 
  
-@app.route('/api/v1/red-flags/<red_flag_id>', methods=['PATCH'])
+@bp.route('/red-flags/<red_flag_id>', methods=['PATCH'])
 def edit_redflag (red_flag_id):
     '''Edit Red-Flag'''
 

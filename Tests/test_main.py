@@ -1,24 +1,24 @@
 '''Red-Flags Tests file'''
 import unittest
-from Routes.main import app, save_redflag, all_redflags
-from Routes.main import spec_redflag, del_redflag, edit_redflag
-from Models.models import Incident
+from app.modelsmain.models import Incident
+from app import initialise_app
 import json
 
 
 class TestRedflag(unittest.TestCase):
     '''Class to test Red-Flag'''
     def setUp(self):
+        app = initialise_app()
         self.test_client = app.test_client()
 
     def test_all_redflag(self):
         '''Get all Red-Flags test'''
         redflag = {
-            "Images": "Images",
-            "Videos": "Videos",
+            "images": "images",
+            "videos": "videos",
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 2,
             "location": "Kampala",
             "status": "draft",
@@ -34,11 +34,11 @@ class TestRedflag(unittest.TestCase):
     def test_save_redflag(self):
         '''Post a Red-Flag Test'''
         redflag1 = {
-            "Images": "Images",
-            "Videos": "Videos",
+            "images": "images",
+            "videos": "videos",
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 0,
             "location": "Kampala",
             "status": "draft",
@@ -53,8 +53,8 @@ class TestRedflag(unittest.TestCase):
         '''Post a Red-Flag Test while missing 2 parameters; images and videos'''
         redflag2 = {
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 0,
             "location": "Kampala",
             "status": "draft",
@@ -79,11 +79,11 @@ class TestRedflag(unittest.TestCase):
     def test_spec_redflag(self):
         '''Get a specific Red-Flag Test'''
         redflag = {
-            "Images": "Images",
-            "Videos": "Videos",
+            "images": "images",
+            "videos": "videos",
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 0,
             "location": "Kampala",
             "status": "draft",
@@ -91,11 +91,11 @@ class TestRedflag(unittest.TestCase):
         }
         self.test_client.post('api/v1/red-flags', json=redflag)
         redflag = {
-            "Images": "Images",
-            "Videos": "Videos",
+            "images": "images",
+            "videos": "videos",
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 1,
             "location": "Kampala",
             "status": "draft",
@@ -110,11 +110,11 @@ class TestRedflag(unittest.TestCase):
     def test_del_redflag(self):
         '''Delete a Red-Flag Test'''
         redflag = {
-            "Images": "Images",
-            "Videos": "Videos",
+            "images": "images",
+            "videos": "videos",
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 0,
             "location": "Kampala",
             "status": "draft",
@@ -128,11 +128,11 @@ class TestRedflag(unittest.TestCase):
     def test_edit_redflag(self):
         '''Edit a Red-Flag Test'''
         redflag = {
-            "Images": "Images",
-            "Videos": "Videos",
+            "images": "Images",
+            "videos": "Videos",
             "comment": "Lorem Ipsum is simply dummy text of the century.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 0,
             "location": "Kampala",
             "status": "draft",
@@ -140,11 +140,11 @@ class TestRedflag(unittest.TestCase):
         }
         self.test_client.post('api/v1/red-flags', json=redflag)
         redflag1 = {
-            "Images": "Images1",
-            "Videos": "Videos1",
+            "images": "Images1",
+            "videos": "Videos1",
             "comment": "LALALALALALALALALALALAL.",
-            "createdBy": "Patrick Kikomeko",
-            "createdOn": "21/12/18",
+            "created_by": "Patrick Kikomeko",
+            "created_on": "21/12/18",
             "id": 0,
             "location": "Kyambogo",
             "status": "draft",
