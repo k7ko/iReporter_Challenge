@@ -1,24 +1,21 @@
+"""Routes for RedFlags"""
 from flask import Flask, jsonify, request, Blueprint
-
-
-from app.modelsmain.models import Incident
-import random
+from app.models.redflag import Incident
+import jwt
 import datetime
 
-incidents=[]
 
 bp = Blueprint("red-flags", __name__, url_prefix='/api/v1')
+redflag = Interventions()
 
 @bp.route('/red-flags', methods=['GET'])
 def all_redflags():
-    '''Getting all Red-Flags'''
-    '''Convert each flag in incidents list to json'''
-    allflags = [flag.to_json() for flag in incidents]
-    print (allflags)
+    '''Function for getting all Red-Flags'''
+    allflags = [flag.to_json() for flag in incidents]  # Convert each flag in incidents list to json
     if len(allflags) < 1:
         return jsonify({'message': 'No incidents yet'})
-    response ={
-        'status':200,
+    response = {
+        'status': 200,
         'data': allflags
     }
     
