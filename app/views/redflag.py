@@ -17,8 +17,7 @@ def all_redflags():
     response = {
         'status': 200,
         'data': allflags
-    }
-    
+    }  
     return jsonify(response)
 
 
