@@ -43,6 +43,13 @@ class Incident():
         updated_redflags = self.cur.fetchone()
         return updated_redflags
 
+    def update_redflag_status(self, redflagId, status):
+        """Function for updating red-flags"""
+        update = f"UPDATE interventions SET status ='{status}' WHERE redflagId='{redflagId}' RETURNING redflagId;"
+        self.cur.execute(update)
+        updated_redflagss = self.cur.fetchone()
+        return updated_redflagss
+
     def delete_redflag(self, redflagId):
         """Function to delete a red flag"""
         delete_table_q = f"DELETE FROM  interventions where redflagId='{redflagId}';"

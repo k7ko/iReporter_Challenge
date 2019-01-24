@@ -43,4 +43,20 @@ class DataBaseConnection:
         )"""
         self.cur.execute(sql1)
 
+    def test_create_incident(self):
+        tsql1 = """INSERT INTO interventions 
+        (redflagId, created_by, redflagtype, location, status, images, videos, comment)
+        VALUES
+        (11, 1, 'redflagtype', 'katakwi', 'resolved', 'images', 'videos', 'comment is here'),
+        (12, 2, 'redflagtype', 'karuma', 'resolved', 'images2', 'videos2', 'comment is here twice' ),
+        (13, 3, 'redflagtype', 'okurut', 'resolved', 'images3', 'videos3', 'comment is here thrice')"""
+        self.cur.execute(tsql1)
+
+    def test_create_userdata(self):
+        tsql2 = """INSERT INTO user_table
+        (userId, name, email, phoneNumber, userName, password, isAdmin)
+        VALUES
+        (1, 'Kiko', 'pkiko@gmail.com', '0776413515', 'pkiko', '777', 'False' )"""
+        self.cur.execute(tsql2)
+
 db = DataBaseConnection() 

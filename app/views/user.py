@@ -33,7 +33,9 @@ def user_registration():
     username = data['username']
     password = hashed_password
 
-    if not username or username.isspace():
+    if not name or name.isspace() or name.isalnum():
+        return jsonify({'message': 'Invalid input.'})
+    elif not username or username.isspace():
         return jsonify({'message': 'Email field can not be left empty'})
     elif not email or email.isspace():
         return jsonify({'message': 'Email field can not be left empty'})
@@ -70,7 +72,7 @@ def login():
     if check_password_hash(user_in_db['password'], auth.password):
         access_token = create_access_token(identity=username)
         response = {
-            'token': access_token.decode('UTF-8'),
+            'token': access_token,
             'status': 200,  # Because its python 3, token is returned in byte so we decode it to string using this 
             'message': 'Successfully logged in'
         }
