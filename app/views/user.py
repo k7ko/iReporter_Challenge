@@ -2,8 +2,12 @@
 from flask import Flask, jsonify, request, Blueprint, make_response
 from app.models.user import User
 from db import DataBaseConnection
+from flask_jwt_extended import (
+    JWTManager, jwt_required, create_access_token,
+    get_jwt_identity
+)
 from werkzeug.security import generate_password_hash, check_password_hash
-import jwt  # pip install pyjwt
+import re
 import datetime
 from functools import wraps
 
@@ -16,29 +20,35 @@ bp2 = Blueprint('users', __name__, url_prefix='/api/v1')
 def user_registration():
     '''Function registering a user'''
     data = request.get_json()  # Converting to json
-    # hashed_password = generate_password_hash(data['password'])
+    hashed_password = generate_password_hash(data['password'])
     if not data:
         response = {
             'status': 400
         }
         return jsonify(response), 400
-    postedData = ['name', 'email', 'phoneNumber', 'username', 'password']
-    if not all(item in data for item in postedData):
-        response = {
-            'message': 'Missing parameter(s)',
-            'status': 400
-        }
-        return jsonify(response), 400
+
     name = data['name']
     email = data['email']
     phoneNumber = data['phoneNumber']
     username = data['username']
-    password = data['password']
-    user.register_user(name, email, phoneNumber, username, password)
+    password = hashed_password
 
+    if not username or username.isspace():
+        return jsonify({'message': 'Email field can not be left empty'})
+    elif not email or email.isspace():
+        return jsonify({'message': 'Email field can not be left empty'})
+    elif not re.match(r"[^@.]+@[A-Za-z]+\.[a-z]+", email):
+        return jsonify({'message': 'Please enter valid email address'})
+    elif not password or password.isspace():
+        return jsonify({'message': 'Password field can not be left empty'})
+
+    profile = user.register_user(name, email, phoneNumber, username, password)
+    access_token = create_access_token(identity=username)
     response = {
             'status': 201,
-            'message': 'Successfully posted',
+            'message': 'Successfully Signed Up!!',
+            'data': profile,
+            'token': access_token
     }
     return jsonify(response), 201
 
@@ -49,25 +59,18 @@ def login():
     data = request.get_json()
     username = data['username']
     password = data['password']
-    # auth = request.authorization
-    # if not auth or not auth.username or not auth.password:
-    #     return jsonify({'message': 'Log in required'})
+    auth = request.authorization
+    if not auth or not auth.username or not auth.password:
+        return jsonify({'message': 'Log in required'})
 
     user_in_db = user.login_user(username)
     if user_in_db is None:
         return jsonify({'message': 'Username or Password does not exist'})
-    # return jsonify({'message': user_in_db['password']})
 
-    if user_in_db['password'] == password:
-        exp_time = datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-        token = jwt.encode(
-            {
-                'username': user_in_db['username'],
-                'exp': exp_time,              
-            }, "beingworkedon"
-        )
+    if check_password_hash(user_in_db['password'], auth.password):
+        access_token = create_access_token(identity=username)
         response = {
-            'token': token.decode('UTF-8'),
+            'token': access_token.decode('UTF-8'),
             'status': 200,  # Because its python 3, token is returned in byte so we decode it to string using this 
             'message': 'Successfully logged in'
         }
