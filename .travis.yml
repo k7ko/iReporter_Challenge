@@ -18,7 +18,7 @@ before_script:
   - "psql -c 'create database ireporter;' -U postgres"
 
 script:
-  - py.test --cov=app tests/
+  - py.test --cov=app
   - coverage report
 
 after_success:
