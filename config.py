@@ -1,12 +1,13 @@
 class Config(object):
-    DEBUG = False
+    DEBUG = True
     TESTING = False
     DATABASE_URI = 'SQLITE:///:memory:'
 
 class ProductionConfig(Config):
-    DATABASE_URI = 'mysql://user@localhost/foo'
+    DATABASE_URI = 'mysql://ireporter@localhost/foo'
+    DEBUG = False
 
-class DevelopmentConfid(Config):
+class DevelopmentConfig(Config):
     DEBUG = True
 
 class TestingConfig(Config):
