@@ -32,12 +32,12 @@ class DataBaseConnection:
         (redflagId serial primary key,
         created_on TIMESTAMPTZ DEFAULT Now(),
         created_by SERIAL,
-        redflagType VARCHAR(15) NOT NULL,
+        redflagtype VARCHAR(15) NOT NULL,
         location VARCHAR(25),
-        status text not null,
+        status text NOT NULL,
         images text,
         videos text,
-        comment text not null,
+        comment VARCHAR(500) NOT NULL,
         foreign key (created_by)
         REFERENCES user_table(userId)
         )"""

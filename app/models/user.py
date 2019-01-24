@@ -15,8 +15,12 @@ class User():
         """Function to register user"""
         isAdmin = False
         user_reg = f"""INSERT INTO user_table
-        (name, email, phoneNumber, username, password, isAdmin) VALUES ('{name}', '{email}', '{phoneNumber}', '{username}', '{password}', '{isAdmin}')"""
+        (name, email, phoneNumber, username, password, isAdmin)\
+        VALUES ('{name}', '{email}', '{phoneNumber}',\
+        '{username}', '{password}', '{isAdmin}')\
+        returning userId, name, email, phoneNumber, username"""
         self.cur.execute(user_reg)
+        return self.cur.fetchone()
 
     def check_user_name(self, username):
         """Function to check if username already exists"""
