@@ -13,6 +13,7 @@ class TestRedflag(unittest.TestCase):
         self.test_client = app.test_client()
         self.db = DataBaseConnection()
         self.db.cur.execute("TRUNCATE TABLE interventions;")
+        self.db.test_create_userdata()
         self.db.test_create_incident()
 
     # def test_save_redflag(self):
