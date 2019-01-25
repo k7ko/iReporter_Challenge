@@ -34,7 +34,7 @@ def user_registration():
     password = hashed_password
 
     if not name or name.isspace() or name.isalnum():
-        return jsonify({'message': 'Invalid input.'})
+        return jsonify({'message': 'Invalid Name'})
     elif not username or username.isspace():
         return jsonify({'message': 'Email field can not be left empty'})
     elif not email or email.isspace():
@@ -62,14 +62,14 @@ def login():
     username = data['username']
     password = data['password']
     auth = request.authorization
-    if not auth or not auth.username or not auth.password:
-        return jsonify({'message': 'Log in required'})
+    # if not auth or not auth.username or not auth.password:
+    #     return jsonify({'message': 'Log in required'})
 
     user_in_db = user.login_user(username)
     if user_in_db is None:
         return jsonify({'message': 'Username or Password does not exist'})
 
-    if check_password_hash(user_in_db['password'], auth.password):
+    if check_password_hash(user_in_db['password'], password):
         access_token = create_access_token(identity=username)
         response = {
             'token': access_token,
@@ -78,19 +78,3 @@ def login():
         }
         return jsonify(response), 200
     return jsonify({'message': 'Wrong Password'}), 400
-
-
-# def token_required(f):
-#     """Function to protect multiple routes"""
-#     @wraps(f)
-#     def decorated(*args, **kwargs):
-#         token = request.args.get('token')  # Getting token out of the querry string
-#         if not token:
-#             return jsonify({'message': 'Token is missing'}), 403
-#         try:
-#             data = jwt.decode(token, app.config['SECRET_KEY'])
-#         except:
-#             return jsonify(['message': 'Token is invalid']), 403
-#         return f9*args, **kwargs)
-
-#     return decorated

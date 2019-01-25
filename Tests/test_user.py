@@ -7,14 +7,14 @@ from db import DataBaseConnection
 import json
 
 
-class TestUser(unittest.TestCase):
-    '''Class to test User routes'''
-    def setUp(self):
-        app = initialise_app()
-        self.test_client = app.test_client()
-        self.db = DataBaseConnection()
-        self.db.cur.execute("TRUNCATE TABLE interventions;")
-        self.db.test_create_incident()
+# class TestUser(unittest.TestCase):
+#     '''Class to test User routes'''
+#     def setUp(self):
+#         app = initialise_app()
+#         self.test_client = app.test_client()
+#         self.db = DataBaseConnection()
+#         self.db.cur.execute("TRUNCATE TABLE interventions;")
+#         self.db.test_create_incident()
 
     # def test_save_redflag(self):
     #     '''Function to test create a Red-Flag Test'''
@@ -64,20 +64,20 @@ class TestUser(unittest.TestCase):
     #     )
     #     self.assertEqual(reponse.status_code, 400)
 
-    def test_spec_redflag(self):
-        '''Function to test getting a specific Red-Flag'''
-        response = self.test_client.get('api/v1/red-flags/11')
-        data = json.loads(response.data)
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(data['status'], 200)
-        self.assertEqual(data['data']['redflagid'], 11)
-        self.assertEqual(data['data']['location'], "katakwi")
+    # def test_spec_redflag(self):
+    #     '''Function to test getting a specific Red-Flag'''
+    #     response = self.test_client.get('api/v1/red-flags/11')
+    #     data = json.loads(response.data)
+    #     self.assertEqual(response.status_code, 200)
+    #     self.assertEqual(data['status'], 200)
+    #     self.assertEqual(data['data']['redflagid'], 11)
+    #     self.assertEqual(data['data']['location'], "katakwi")
 
-    def test_del_redflag(self):
-        '''Function to test delete a Red-Flag'''
-        response = self.test_client.delete("/api/v1/red-flags/12")
-        data = json.loads(response.data)
-        self.assertEqual(response.status_code, 200)
+    # def test_del_redflag(self):
+    #     '''Function to test delete a Red-Flag'''
+    #     response = self.test_client.delete("/api/v1/red-flags/12")
+    #     data = json.loads(response.data)
+    #     self.assertEqual(response.status_code, 200)
 
     # def test_edit_redflag(self):
     #     '''Edit a Red-Flag Test'''

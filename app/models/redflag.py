@@ -29,6 +29,13 @@ class Incident():
         redflags = self.cur.fetchall()
         return redflags
 
+    def get_all_intervention(self):
+        """Function to get all redflags from table interventions2"""
+        get_interventions = f"SELECT * FROM interventions2;"
+        self.cur.execute(get_interventions)
+        interventions = self.cur.fetchall()
+        return interventions
+
     def get_one_redflag(self, redflagId):
         """Function to get one red-flag"""
         get_one_redflag = f"SELECT * FROM interventions where redflagId='{redflagId}';"

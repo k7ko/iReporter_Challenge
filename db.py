@@ -32,7 +32,7 @@ class DataBaseConnection:
         (redflagId serial primary key,
         created_on TIMESTAMPTZ DEFAULT Now(),
         created_by SERIAL,
-        redflagtype VARCHAR(15) NOT NULL,
+        redflagtype VARCHAR(15),
         location VARCHAR(25),
         status text NOT NULL,
         images text,
@@ -56,7 +56,9 @@ class DataBaseConnection:
         tsql2 = """INSERT INTO user_table
         (userId, name, email, phoneNumber, userName, password, isAdmin)
         VALUES
-        (1, 'Kiko', 'pkiko@gmail.com', '0776413515', 'pkiko', '777', 'False' )"""
+        (1, 'Kiko', 'pkiko@gmail.com', '0776413515', 'pkiko', '777', 'False' ),
+        (2, 'Pato', 'kpato@gmail.com', '0776313625', 'pkiko', '567', 'False' ),
+        (3, 'Jr', 'jr@gmail.com', '0776347625', 'juni', '555', 'False' )"""
         self.cur.execute(tsql2)
 
-db = DataBaseConnection() 
+db = DataBaseConnection()

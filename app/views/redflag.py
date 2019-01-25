@@ -5,7 +5,6 @@ from flask_jwt_extended import (
     JWTManager, jwt_required, create_access_token,
     get_jwt_identity
 )
-import jwt
 import datetime
 
 
@@ -19,6 +18,20 @@ def all_redflags():
     '''Function for getting all Red-Flags'''
 
     data = redflag.get_all_redflag()
+    if data is None:
+        return jsonify({'message': 'No incidents yet'})
+    response = {
+        'status': 200,
+        'data': data
+    }  
+    return jsonify(response)
+
+@bp.route('/interventions', methods=['GET'])
+@jwt_required
+def all_intervention():
+    '''Function for getting all Interventions'''
+
+    data = redflag.get_all_intervention()
     if data is None:
         return jsonify({'message': 'No incidents yet'})
     response = {
